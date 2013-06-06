@@ -71,8 +71,10 @@ public class Todo extends Activity{
 				//User us = new User("admin","admin");
 				String add_item = to_add_item.getText().toString();
 				addlistinview(add_item);
-				todoview.invalidate();
+				
 				ApplicationSession.getUser().addtodolist(add_item);
+				to_add_item.setText("");
+				todoview.invalidate();
 			}
 		});
 	}

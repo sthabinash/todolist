@@ -17,7 +17,7 @@ public class User{
 	
 	public User()
 	{
-		user_pass.add("##admin**admin@@");
+		//user_pass.add("##admin**admin@@");
 	}
 	
 	public User(String username,String password)
@@ -88,7 +88,7 @@ public class User{
     	        bufferWritter.write(data);
     	        
     	        bufferWritter.close();
- 
+    	        fileWriter.close();
 	        System.out.println("Done");
 	        Toast.makeText(Signin.getAppContext(), "User added", 1000).show();
  
@@ -101,7 +101,58 @@ public class User{
 	
 	
 	
-	public ArrayList verify_user(){
+	public ArrayList<String> verify_user(){
+		user_pass = new ArrayList<String>();
+		
+		
+		try{
+			
+    		String filePath = Signin.getAppContext().getFilesDir().getPath().toString();
+			File file =new File(filePath,"Users.txt");
+    		
+    		//if file doesnt exists, then create it
+    		if(!file.exists()){
+    		//	user_todolist.add("found nothing");
+    			Toast.makeText(Signin.getAppContext(), "File Not found", Toast.LENGTH_LONG).show();
+    		return user_pass;	
+    			//Toast.makeText(Signin.getAppContext(), "File Created", Toast.LENGTH_LONG);
+    			
+    		}
+    		else{
+    			
+    			String sCurrentLine=null;
+    			
+    			FileReader fr = new FileReader(file);
+    			BufferedReader br = new BufferedReader(fr);
+    			//Toast.makeText(Signin.getAppContext(), "Entered the read file", Toast.LENGTH_SHORT).show();
+    			while ((sCurrentLine = br.readLine()) != null) {
+    				//System.out.println(sCurrentLine);
+    				user_pass.add(sCurrentLine);
+    				//Toast.makeText(Signin.getAppContext(), sCurrentLine, Toast.LENGTH_SHORT).show();
+					
+					/**
+					if(username.equals(got_user))
+					{
+						//user_flag = 1;
+						Toast.makeText(Signin.getAppContext(), "Found user", Toast.LENGTH_SHORT).show();
+						list_item = sCurrentLine.substring(sCurrentLine.indexOf("**")+2, sCurrentLine.indexOf("@@"));
+						user_pass.add(list_item);
+					}*/
+    			}
+    			fr.close();
+    			br.close();
+    			return user_pass;
+    		}
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			Toast.makeText(Signin.getAppContext(), "Error in retrieving user item", 1000).show();
+		}
+		
+		
+		
+		
+		
 		return user_pass;
 	}
 	
@@ -120,7 +171,7 @@ public class User{
 	    		
 	    		//if file doesnt exists, then create it
 	    		if(!file.exists()){
-	    			user_todolist.add("found nothing");
+	    		//	user_todolist.add("found nothing");
 	    		return user_todolist;	
 	    			//Toast.makeText(Signin.getAppContext(), "File Created", Toast.LENGTH_LONG);
 	    			

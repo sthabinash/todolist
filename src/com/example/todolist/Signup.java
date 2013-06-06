@@ -27,6 +27,21 @@ public class Signup extends Activity {
 		final EditText pass = (EditText)this.findViewById(R.id.up_password);
 		final EditText repass = (EditText)this.findViewById(R.id.up_repassword);
 		Button submit = (Button)this.findViewById(R.id.up_submit);
+		Button signin = (Button)this.findViewById(R.id.up_signin);
+		
+		
+		
+		signin.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				 Intent signiN_intent = new Intent(Signup.this,Signin.class);
+				 //intent.putExtra("kkey",uname);
+				 startActivity(signiN_intent);
+			}
+		});
+		
 		
 	
 		submit.setOnClickListener(new OnClickListener() {
@@ -44,14 +59,14 @@ public class Signup extends Activity {
 					{
 						 //Toast.makeText(getApplicationContext(), "correct", Toast.LENGTH_LONG).show();
 						 User u = new User();
-						 String username = "";
-						 String password = "";
-						 ArrayList <String>stringList = new ArrayList<String>();
+						 String username=null;
+						 String password = null;
+						 ArrayList <String>stringList = u.verify_user();
 						 for (int i = 0; i < stringList.size(); i++){
 							   String item = stringList.get(i);
 							   username = item.substring(2, item.indexOf("**"));
 								password = item.substring(item.indexOf("**")+2, item.indexOf("@@"));
-								Toast.makeText(getApplicationContext(), "User = "+username+"\nPassword="+password, Toast.LENGTH_SHORT).show();
+								//Toast.makeText(getApplicationContext(), "User = "+username+"\nPassword="+password, Toast.LENGTH_SHORT).show();
 							   if(username.toLowerCase().equals(uname.toLowerCase()))
 								{
 									user_flag = 1;
@@ -84,6 +99,10 @@ public class Signup extends Activity {
 				}
 			}
 		});
+		
+		
+		
+		
 		
 		
 	}
