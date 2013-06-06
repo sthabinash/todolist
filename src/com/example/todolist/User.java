@@ -48,6 +48,7 @@ public class User{
 		this.password = password;
 	}
 	
+	//adds user to file
 	public void adduser(){
 		
 		try{
