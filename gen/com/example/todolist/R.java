@@ -33,11 +33,12 @@ public final class R {
         public static final int Button03=0x7f090013;
         public static final int Button04=0x7f09000c;
         public static final int TextView01=0x7f090005;
-        public static final int action_settings=0x7f090018;
-        public static final int addlist=0x7f090017;
-        public static final int btn_add=0x7f090016;
+        public static final int action_settings=0x7f090019;
+        public static final int addlist=0x7f090018;
+        public static final int btn_add=0x7f090017;
         public static final int button1=0x7f090007;
         public static final int button3=0x7f090009;
+        public static final int months_list=0x7f090015;
         public static final int root=0x7f09000d;
         public static final int signin_password=0x7f090006;
         public static final int signin_signin=0x7f090008;
@@ -47,7 +48,7 @@ public final class R {
         public static final int textView2=0x7f090001;
         public static final int textView3=0x7f090002;
         public static final int textView4=0x7f090003;
-        public static final int todo=0x7f090015;
+        public static final int todo=0x7f090016;
         public static final int up_password=0x7f09000f;
         public static final int up_repassword=0x7f090010;
         public static final int up_signin=0x7f090014;
@@ -57,7 +58,8 @@ public final class R {
     public static final class layout {
         public static final int signin=0x7f030000;
         public static final int signup=0x7f030001;
-        public static final int todofile=0x7f030002;
+        public static final int todo_adpt=0x7f030002;
+        public static final int todofile=0x7f030003;
     }
     public static final class menu {
         public static final int main=0x7f080000;

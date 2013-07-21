@@ -81,7 +81,8 @@ public class Signin extends Activity{
 							u.setUsername(userinput);
 							ApplicationSession.setUser(u);
 							Toast.makeText(getApplicationContext(), "Welcome "+username, Toast.LENGTH_LONG).show();
-							Intent signin_clc = new Intent(Signin.this,Todo.class);
+							//Intent signin_clc = new Intent(Signin.this,Todo.class);
+							Intent signin_clc = new Intent(Signin.this,Todoadpt.class);
 							
 							startActivity(signin_clc);
 						}
