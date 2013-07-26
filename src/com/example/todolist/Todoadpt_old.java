@@ -22,7 +22,7 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Todoadpt extends Activity{
+public class Todoadpt_old extends Activity{
 	
 	  private ListView monthsListView;
 	  EditText to_add_item;
