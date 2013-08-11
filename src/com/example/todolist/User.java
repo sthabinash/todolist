@@ -256,5 +256,22 @@ public class User{
 			
 			return flag_return;
 		}
+		
+		
+		
+		public ArrayList customlist(){
+			ArrayList<String> fromfile = gettodolist();
+			String []results = fromfile.toArray(new String[fromfile.size()]);
+			TodoItem items;
+			ArrayList output = new ArrayList();
+			
+			for(int i=0;i<results.length;i++)
+			{
+				items = new TodoItem();
+				items.setitem(results[i]);
+				output.add(items);
+			}
+			return output;
+		}
 
 }

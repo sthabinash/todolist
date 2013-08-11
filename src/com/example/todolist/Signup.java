@@ -82,7 +82,7 @@ public class Signup extends Activity {
 							 u.adduser();
 							 Toast.makeText(getApplicationContext(), "User Successfully created\nWelcome "+uname, Toast.LENGTH_LONG).show();
 							 ApplicationSession.setUser(u);
-							 Intent intent = new Intent(Signup.this,Todo.class);
+							 Intent intent = new Intent(Signup.this,Todoadpt.class);
 							 //intent.putExtra("kkey",uname);
 							 startActivity(intent);
 						 }

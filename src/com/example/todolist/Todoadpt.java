@@ -28,6 +28,7 @@ public class Todoadpt extends Activity{
 	  EditText to_add_item;
 	   private ArrayAdapter arrayAdapter;
 	   ArrayList <String>foundlist = new ArrayList<String>();
+	   ArrayList customlist = new ArrayList();
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +77,10 @@ public class Todoadpt extends Activity{
     }
 	
 	protected void add_todo_item(){
-		foundlist = ApplicationSession.getUser().gettodolist();
+		//foundlist = ApplicationSession.getUser().gettodolist();       //for regular arrayadaptor
+		
+		//for custom adapter
+		customlist = ApplicationSession.getUser().customlist();
 	    //	String arr[]=foundlist.toArray(new String[foundlist.size()]);
 	    	
 	    	
@@ -90,11 +94,12 @@ public class Todoadpt extends Activity{
 	        // resource - The resource ID for a layout file containing a layout 
 	                // to use when instantiating views.
 	        // From the third parameter, you plugged the data set to adapter
-	        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,foundlist);
+	     //   arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,foundlist);
 	        
 	 
 	        // By using setAdapter method, you plugged the ListView with adapter
-	        monthsListView.setAdapter(arrayAdapter);
+	       // monthsListView.setAdapter(arrayAdapter);
+	        monthsListView.setAdapter(new CustomListAdapter(this, customlist));
 	}
 
 }

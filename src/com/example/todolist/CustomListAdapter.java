@@ -7,15 +7,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 
 
 public class CustomListAdapter extends BaseAdapter {
 	 
-    private ArrayList listData;
+    private ArrayList<TodoItem> listData;
  
     private LayoutInflater layoutInflater;
+    
+    boolean[] checkBoxState;
  
     public CustomListAdapter(Context context, ArrayList listData) {
         this.listData = listData;
@@ -37,23 +40,36 @@ public class CustomListAdapter extends BaseAdapter {
         return position;
     }
  
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView( int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
             convertView = layoutInflater.inflate(R.layout.list_row_layout, null);
             holder = new ViewHolder();
             holder.contextView = (TextView) convertView.findViewById(R.id.listcontent);
-            holder.chkbxView = (TextView) convertView.findViewById(R.id.chkbx);
+            holder.chkbxView = (CheckBox) convertView.findViewById(R.id.chkbx);
          //   holder.reportedDateView = (TextView) convertView.findViewById(R.id.date);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
  
+        holder.contextView.setText(listData.get(position).getitem());
+ /*       holder.chkbxView.setChecked(checkBoxState[position]);
+        
     /*    holder.headlineView.setText(listData.get(position).getHeadline());
         holder.reporterNameView.setText("By, " + listData.get(position).getReporterName());
         holder.reportedDateView.setText(listData.get(position).getDate());
- */
+
+        holder.chkbxView.setOnClickListener(new View.OnClickListener() {
+        public void onClick(View v) {
+            if(((CheckBox)v).isChecked())
+             checkBoxState[position]=true;
+            else
+             checkBoxState[position]=false;
+              
+            }
+           });*/
+        
         return convertView;
     }
  
@@ -63,7 +79,7 @@ public class CustomListAdapter extends BaseAdapter {
         TextView reportedDateView;
         */
     	TextView contextView;
-    	TextView chkbxView;
+    	CheckBox chkbxView;
     }
  
 }
