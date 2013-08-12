@@ -29,6 +29,7 @@ public class Todoadpt extends Activity{
 	   private ArrayAdapter arrayAdapter;
 	   ArrayList <String>foundlist = new ArrayList<String>();
 	   ArrayList customlist = new ArrayList();
+	   ArrayList dellist = new ArrayList();
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +39,9 @@ public class Todoadpt extends Activity{
         to_add_item = (EditText)this.findViewById(R.id.editTodo);
        // String[] monthsArray = { "JAN", "FEB", "MAR", "APR", "MAY", "JUNE", "JULY","AUG", "SEPT", "OCT", "NOV", "DEC" };
         	Button add_btn = (Button)this.findViewById(R.id.button_add);
-			
+        	Button del_btn = (Button)this.findViewById(R.id.button_del);
+        	
+			//Adding action to Add button
         	final EditText edittext = (EditText) findViewById(R.id.editTodo);
 		add_btn.setOnClickListener(new OnClickListener() {
 			
@@ -51,6 +54,41 @@ public class Todoadpt extends Activity{
 				ApplicationSession.getUser().addtodolist(add_item); // add todo item to arraylist
 				to_add_item.setText("");
 				add_todo_item();  //call the adapter
+			}
+		});
+		
+		
+		
+		//Adding action to Del button
+		del_btn.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				//User us = new User("admin","admin");
+				ArrayList<Integer> delvalues = ApplicationSession.getvals();
+				
+				Integer []delvals = delvalues.toArray(new Integer[delvalues.size()]);
+				int temp=0;
+				//Sorting the array delvals
+				for(int i=0;i<delvals.length;i++){
+					for(int j=i+1;j<delvals.length;j++){
+						if(delvals[i]>delvals[j]){
+							temp=delvals[i];
+							delvals[i]=delvals[j];
+							delvals[j]=temp;
+						}
+					}//end of for j
+				}//end of for i
+				
+				dellist = ApplicationSession.getUser().gettodolist();
+				for (int j = delvals.length-1; j >= 0; j--) {
+	                Toast.makeText(getApplicationContext(), "Delete = "+delvals[j]+"  "+dellist.get(delvals[j]), Toast.LENGTH_SHORT).show();
+					dellist.remove(delvals[j]);
+	            }
+				
+				delvalues.clear();
+				to_add_item.setText("");
+				del_todo_item(dellist);  //call the delete adapter
 			}
 		});
 		
@@ -101,5 +139,28 @@ public class Todoadpt extends Activity{
 	       // monthsListView.setAdapter(arrayAdapter);
 	        monthsListView.setAdapter(new CustomListAdapter(this, customlist));
 	}
+	
+	
+	
+	protected void del_todo_item(ArrayList<String> gotlist){
+		//foundlist = ApplicationSession.getUser().gettodolist();       //for regular arrayadaptor
+		
+		String []results = gotlist.toArray(new String[gotlist.size()]);
+		TodoItem items;
+		ArrayList output = new ArrayList();
+		
+		for(int i=0;i<results.length;i++)
+		{
+			items = new TodoItem();
+			items.setitem(results[i]);
+			output.add(items);
+		}
+		
+	        // Initialize the UI components
+	        monthsListView = (ListView) findViewById(R.id.months_list);
+	       
+	        monthsListView.setAdapter(new CustomListAdapter(this, output));
+	}
+
 
 }
